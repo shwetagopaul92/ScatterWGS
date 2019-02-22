@@ -12,8 +12,7 @@ task doVariantWorkflow {
   String symbol
   Int radius
   command {
-    R -e "BiocManager::install('variants', version = '3.9', update=TRUE, ask=FALSE); \
-		library('variants'); \
+    R -e "library('variants'); \
 		file <- system.file('vcf', 'NA06985_17.vcf.gz', package = 'cgdv17'); \
         genesym <- '${symbol}'; \
 		geneid <- select(org.Hs.eg.db, keys=genesym, keytype='SYMBOL', \
@@ -36,7 +35,7 @@ task doVariantWorkflow {
   }
   	
   runtime {
-    docker: "waldronlab/bioconductor_devel"
+    docker: "reshg/devel_variants"
     bootDiskSizeGb:50
     }
 }
